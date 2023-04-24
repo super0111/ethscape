@@ -1,0 +1,87 @@
+
+.gemstoneItem {
+  background-color: rgba(255, 255, 255, 0.05);
+  padding: 10px;
+  width: 25%;
+  min-height: 165px;
+  margin-bottom: 20px;
+  text-align: center;
+  position: relative;
+}
+
+.gemstoneItem .moreIcon {
+  position: absolute;
+  top: 7px;
+  right: 7px;
+}
+
+.gemstoneItem .itemImg {
+  max-width: 50px;
+  margin: 20px 0 15px 0;
+}
+
+.gemstoneItem .name {
+  font-size: 18px;
+  font-family: "Open Sans";
+  color: white;
+  margin-bottom: 10px;
+}
+
+.gemstoneItem .price {
+  font-weight: 300;
+  font-size: 15px;
+  line-height: 1.4;
+}
+
+.gemstoneItem .addCartForm {
+  margin-top: 20px;
+  border-collapse: separate;
+  border: 1px solid #444;;
+}
+
+.gemstoneItem .addCartForm input {
+  width: 50%;
+  border: none;
+  outline: none;
+  background: none;
+  color: #444;
+  padding: 5px 10px;
+}
+
+.gemstoneItem .addCartForm button {
+  border: none;
+  outline: none;
+  background: none;
+  color:white;
+  cursor: pointer;
+  width: 50%;
+  padding: 5px 10px;
+}
+
+.modal-title {
+  font-size: 1.3em;
+  font-weight: 300;
+  color: #FFF;
+  text-align: center;
+}
+
+.modal-text {
+  font-weight: 300;
+  color: #FFF;
+  font-size: 0.8em;
+  margin-top: 25px;
+  text-align: center;
+}
+
+.text-success {
+  color: #43ac6a;
+}
+
+.text-danger {
+  color: #f04124;
+  text-decoration: line-through;
+}
+
+
+
+

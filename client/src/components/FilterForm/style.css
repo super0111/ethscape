@@ -1,0 +1,39 @@
+.filterForm {
+  width: 100%;
+}
+
+.filterForm .item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid;
+  border-color: #252525;
+  color: #AAA;
+  font-size: 12px;
+  padding: 8px 15px 5px 15px;
+  background-color: #333639;
+  cursor: pointer;
+}
+
+.filterForm .item:hover {
+  color: #6f6f6f;
+}
+
+.filterForm label {
+  cursor: pointer;
+}
+
+.filterForm .value {
+  background-color: #222;
+  border-radius: 2px;
+  padding: 3px 5px 2px 5px;
+  color: #ffffff;
+  vertical-align: middle;
+  white-space: nowrap;
+  text-align: center;
+  font-size: 12px;
+  display: inline-block;
+  min-width: 10px;
+  font-weight: 300;
+  cursor: pointer;
+}

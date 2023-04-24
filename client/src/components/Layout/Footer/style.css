@@ -1,0 +1,95 @@
+/* Footer */
+.general_footer {
+  position: relative;
+  padding: 5rem 1rem 3rem;
+  display: flex;
+  align-items: center;
+  background-image: var(--main-bg);
+  padding: 2rem 1rem 2rem;
+}
+.general_footer_border {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  border-top: double 0.8rem var(--border-color);
+  background-color: var(--bg-color);
+}
+.copyright {
+  font-size: .6rem;
+  font-weight: normal;
+  text-transform: uppercase;
+  line-height: .6rem;
+}
+.footer_content {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+}
+.footer_content a {
+  color: var(--main-text)
+}
+.footer_content a:hover {
+  cursor: pointer;
+  color: var(--actions-color)
+}
+.footer_content i {
+  font-size: 1.5rem;
+  color: var(--main-text)
+}
+.footer_content i:hover {
+  cursor: pointer;
+  color: var(--actions-color)
+}
+.footer_ethscape-logo {
+  background-image: var(--splash-logo);
+  width: 100%;
+  height: 5rem;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position-x: center;
+  filter: none;
+  -webkit-filter: grayscale(100%);
+  -moz-filter:    grayscale(100%);
+  -ms-filter:     grayscale(100%);
+  -o-filter:      grayscale(100%);
+  cursor: pointer;
+}
+.footer_ethscape-logo:hover {
+  filter: none;
+  -webkit-filter: grayscale(0%);
+  -moz-filter:    grayscale(0%);
+  -ms-filter:     grayscale(0%);
+  -o-filter:      grayscale(0%);
+}
+.footer_social {
+  width: 6rem;
+}
+.footer_social i {
+  font-size: 1.2rem;
+}
+.links {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 1600px;
+  padding-bottom: 4rem;
+}
+.links a {
+  color: var(--main-text);
+}
+.links a:hover {
+  color: var(--actions-color);
+}
+.footer_content_area {
+  display: flex;
+  flex-direction: column;
+  margin: 1rem 2rem;
+}
+.footer_content_title {
+  margin-bottom: .5rem;
+  font-size: 1.2rem;
+}

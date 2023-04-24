@@ -1,0 +1,45 @@
+body {
+  background: url(https://ethscape.net/BGTEST.jpg) no-repeat center center fixed;
+  background-size: cover !important;
+  background-attachment: fixed !important;
+}
+
+.store {
+  display: flex;
+  justify-content: start;
+  margin: auto;
+  margin-bottom: 100px;
+  background-color: #15130f;
+  border-style: solid;
+  border-width: 2px;
+  border-color: #61481f;
+  padding: 20px;
+  width: 1170px;
+  height: 800px;
+  gap: 30px;
+}
+
+.leftBar {
+  width: 25%;
+}
+
+.rightBar {
+  width: 75%;
+}
+
+.store h3 {
+  margin-top: 0;
+  font-weight: 100;
+  /* font-family: RuneScapeLarge !important; */
+  font-family: 'Rubik Iso', cursive;
+  font-size: 30px;
+  color: #C5D7E4;
+}
+
+.store hr {
+  border-color: #383C3F !important;
+  margin-top: 21px;
+  margin-bottom: 21px;
+  border: 0;
+  border-top: 1px solid #dddddd;
+}

@@ -1,0 +1,59 @@
+{
+  "name": "ethscape-forum-client",
+  "version": "1.0.0",
+  "author": "xrystalll",
+  "description": "EthScape Forum react client",
+  "private": true,
+  "homepage": ".",
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "GENERATE_SOURCEMAP=false react-scripts build",
+    "build:local": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
+  "dependencies": {
+    "ethers": "^5.6.8",
+    "jwt-decode": "^3.1.2",
+    "moment": "^2.29.1",
+    "react": "^17.0.2",
+    "react-custom-scrollbars-2": "^4.4.0",
+    "react-datepicker": "^3.7.0",
+    "react-dom": "^17.0.2",
+    "react-google-recaptcha": "^2.1.0",
+    "react-image-lightbox": "^5.1.4",
+    "react-markdown": "^5.0.3",
+    "react-router-dom": "^5.2.0",
+    "react-scripts": "^5.0.1",
+    "react-smooth-marquee": "^1.0.0",
+    "react-syntax-highlighter": "^15.4.3",
+    "react-textarea-autosize": "^8.3.2",
+    "react-toastify": "^7.0.3",
+    "react-transition-group": "^4.4.1",
+    "socket.io-client": "^4.0.1"
+  },
+  "devDependencies": {
+    "@iconify/react": "^4.1.0",
+    "@testing-library/jest-dom": "^5.11.10",
+    "@testing-library/react": "^11.2.6",
+    "@testing-library/user-event": "^13.1.1"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
+}

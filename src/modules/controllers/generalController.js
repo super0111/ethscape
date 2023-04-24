@@ -16,6 +16,7 @@ const Comment = require('../models/Comment');
 const Dialogue = require('../models/Dialogue');
 const Message = require('../models/Message');
 const AuthHistory = require('../models/AuthHistory');
+const Products = require('../models/Products');
 
 const deleteFiles = require('../utils/deleteFiles');
 const storage = require('../utils/storage');
@@ -669,6 +670,15 @@ module.exports.createEventBanner = async (req, res, next) => {
     const eventBanner = await newEventBanner.save()
 
     res.json(eventBanner)
+  } catch(err) {
+    next(createError.InternalServerError(err))
+  }
+}
+
+module.exports.getProducts = async (req, res, next) => {
+  try {
+    const products = await Products.find().sort({ date: 1 })
+    res.json(products)
   } catch(err) {
     next(createError.InternalServerError(err))
   }

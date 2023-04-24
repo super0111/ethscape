@@ -7,6 +7,8 @@ const ProfileController = require('../modules/controllers/profileController');
 const ForumController = require('../modules/controllers/forumController');
 const MessagesController = require('../modules/controllers/messagesController');
 
+router.get('/getProducts', GeneralController.getProducts)
+
 router.get('/search', GeneralController.search)
 router.get('/stats', GeneralController.getStats)
 router.get('/users', GeneralController.getUsers)

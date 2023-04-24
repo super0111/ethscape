@@ -9,11 +9,14 @@ import { LoginForm } from 'components/LoginForm';
 import { FilterForm } from 'components/FilterForm';
 import { GemstoneItem } from 'components/GemstoneItem';
 
+import { BACKEND } from 'support/Constants';
+
 import './style.css';
 
 const GameStore = () => {
   document.title = 'EthScape'
   const { setFabVisible, setWalletConnectVisible, setForumMenuActive, lang } = useContext(StoreContext)
+  const [ productData, setProductData ] = useState([])
   const [init, setInit] = useState(true)
 
   useEffect(() => {
@@ -26,6 +29,17 @@ const GameStore = () => {
     // eslint-disable-next-line
   }, [init])
 
+  useEffect( async ()=> {
+    fetch(BACKEND() + '/api/getProducts', {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+    })
+    .then( async response => {
+      setProductData(await response.json());
+    })
+  }, [])
   return (
     <>
       <Section>
@@ -40,8 +54,14 @@ const GameStore = () => {
           <div className='rightBar'>
             <h3 className="cathead">All products</h3>
             <hr></hr>
-            <div className='item-list'>
-              <GemstoneItem />
+            <div className='flex flex-wrap justify-between item-list'>
+              {
+                productData.length>0 && productData.map((item, i) => (
+                  <div key={i} style={{width: '24%'}}>
+                    <GemstoneItem data={item}/>
+                  </div>
+                ))
+              }
             </div>
           </div>
         </div>

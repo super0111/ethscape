@@ -2,21 +2,27 @@
 .gemstoneItem {
   background-color: rgba(255, 255, 255, 0.05);
   padding: 10px;
-  width: 25%;
+  width: 100%;
   min-height: 165px;
   margin-bottom: 20px;
   text-align: center;
   position: relative;
 }
 
+.gap-1 {
+  gap: 5px;
+}
+
 .gemstoneItem .moreIcon {
   position: absolute;
   top: 7px;
   right: 7px;
+  cursor: pointer;
 }
 
 .gemstoneItem .itemImg {
   max-width: 50px;
+  height: 50px;
   margin: 20px 0 15px 0;
 }
 

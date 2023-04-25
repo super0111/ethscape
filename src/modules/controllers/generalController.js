@@ -17,6 +17,7 @@ const Dialogue = require('../models/Dialogue');
 const Message = require('../models/Message');
 const AuthHistory = require('../models/AuthHistory');
 const Products = require('../models/Products');
+const CartLists = require('../models/CartList');
 
 const deleteFiles = require('../utils/deleteFiles');
 const storage = require('../utils/storage');
@@ -679,6 +680,34 @@ module.exports.getProducts = async (req, res, next) => {
   try {
     const products = await Products.find().sort({ date: 1 })
     res.json(products)
+  } catch(err) {
+    next(createError.InternalServerError(err))
+  }
+}
+
+module.exports.addToCart = async (req, res, next) => {
+  try {
+    const { item_id, user_id, product_count } = req.body;
+    const newCartList = new CartLists({
+      item_id,
+      user_id,
+      product_count,
+      createdAt: new Date().toISOString(),
+    })
+    const eventCartList = await newCartList.save()
+
+    res.json(eventCartList)
+  } catch(err) {
+    next(createError.InternalServerError(err))
+  }
+}
+
+module.exports.emptyCartList = async (req, res, next) => {
+  try {
+    const { user_id } = req.body;
+    const emptyCartList = CartLists.deleteMany({user_id:user_id});
+    const eventCartList = await emptyCartList.save()
+    res.json(eventCartList)
   } catch(err) {
     next(createError.InternalServerError(err))
   }

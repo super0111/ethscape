@@ -3,11 +3,8 @@ import { Link } from 'react-router-dom';
 import ReCAPTCHA from "react-google-recaptcha";
 
 import { StoreContext } from 'store/Store';
-
 import { useForm } from 'hooks/useForm';
-
 import { BACKEND, Strings } from 'support/Constants';
-
 import { Section, SectionHeader } from 'components/Section';
 import Breadcrumbs from 'components/Breadcrumbs';
 import FormCardItem from 'components/Card/FormCardItem';
@@ -16,8 +13,8 @@ import { InputButton } from 'components/Button';
 import Loader from 'components/Loader';
 
 const SignUp = ({ history }) => {
-  const { login, lang } = useContext(StoreContext)
   document.title = 'EthScape | ' + Strings.signUp[lang]
+  const { login, lang } = useContext(StoreContext)
   const [errors, setErrors] = useState({})
   const [loading, setLoading] = useState(false)
   const [recaptchaValue, setRecaptchaValue] = useState('')

@@ -1,0 +1,107 @@
+
+.loginedForm {
+  width: 100%;
+  padding: 15px 15px 25px 15px;
+  background-color: #333639;
+  margin-bottom: 21px;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);  
+}
+
+.loginedForm h4 {
+  font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-weight: 300;
+  line-height: 1.1;
+  color: inherit;
+  margin-bottom: 10px;
+}
+
+.loginedForm label {
+  font-size: 12px;
+  font-weight: normal;
+  display: inline-block;
+  max-width: 100%;
+  margin-bottom: 5px;
+}
+
+.loginedForm .mid-text {
+  text-align: right;
+  font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  margin: 10px 0;
+}
+
+.text-center {
+  text-align: center !important;
+}
+.cursor-pointer {
+  cursor: pointer;
+}
+
+.loginedForm button {
+  padding: 8px 12px;
+  display: block;
+  width: 100%;
+  color: #ffffff;
+  background-color: #D94542;
+  border-color: #D94542;
+  margin-bottom: 0;
+  font-weight: normal;
+  text-align: center;
+  vertical-align: middle;
+  -ms-touch-action: manipulation;
+  touch-action: manipulation;
+  cursor: pointer;
+  background-image: none;
+  border: 1px solid transparent;
+  white-space: nowrap;
+  font-size: 15px;
+  line-height: 1.4;
+  border-radius: 0;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  font-family: RuneScapeBold !important;
+  margin: 10px 0;
+}
+
+.loginedForm button:hover {
+  background-color: #ba2d2a;
+  transition: 0.3;
+}
+
+.loginedForm .modal-title {
+  font-family: cinzel;
+  text-transform: uppercase;
+  font-weight: normal;
+  margin-top: 0;
+  margin-bottom: 1.4em;
+  text-align: center;
+} 
+
+.loginedForm .modal-text {
+  font-weight: 300;
+  /* font-family: RuneScapeBold !important; */
+  font-size: 15px;
+  line-height: 1.4;
+}
+
+.loginedForm .modal-accept {
+  width: 100%;
+  height: 30px;
+  margin-top: 30px;
+  background: #43AC6A;
+  border: none;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  font-family: inherit;
+}
+
+.close-modal {
+  position: absolute;
+  top: 5px;
+  right: 10px;
+  cursor: pointer;
+}

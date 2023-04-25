@@ -19,6 +19,9 @@ const AuthHistory = require('../models/AuthHistory');
 const Products = require('../models/Products');
 const CartLists = require('../models/CartList');
 
+const mysqlConnection = require('../MySQL');
+
+
 const deleteFiles = require('../utils/deleteFiles');
 const storage = require('../utils/storage');
 
@@ -678,11 +681,19 @@ module.exports.createEventBanner = async (req, res, next) => {
 
 module.exports.getProducts = async (req, res, next) => {
   try {
-    const products = await Products.find().sort({ date: 1 })
+    const products = await Products.find().sort({ date: 1 });
     res.json(products)
   } catch(err) {
     next(createError.InternalServerError(err))
   }
+}
+
+module.exports.getProducts1 = async (req, res, next) => {
+  mysqlConnection.query("SELECT * from products", (err, rows, fields) => {
+    if (!err) {
+      res.send(rows);
+    }
+  });
 }
 
 module.exports.addToCart = async (req, res, next) => {
@@ -702,12 +713,54 @@ module.exports.addToCart = async (req, res, next) => {
   }
 }
 
+module.exports.addToCart1 = async (req, res, next) => {
+  try {
+    const { item_id, user_id, product_count } = req.body;
+    const sql = `INSERT INTO cartLists (item_id, user_id, product_count) VALUES 
+    ("${item_id}", "${user_id}", "${product_count}")`;
+    mysqlConnection.query(sql, (err, rows, fields) => {
+      if (!err) {
+        return res.status(200).json({ message: "ok" });
+      }
+      res.send(err);
+    });
+  } catch(err) {
+    next(createError.InternalServerError(err))
+  }
+}
+
 module.exports.emptyCartList = async (req, res, next) => {
   try {
     const { user_id } = req.body;
-    const emptyCartList = CartLists.deleteMany({user_id:user_id});
+
+    const emptyCartList = CartLists.deleteMany({user_id:user_id}, function (err, docs) {
+      if (err){
+          console.log(err)
+      }
+      else{
+          console.log("Removed User : ", docs);
+      }
+    });
+
     const eventCartList = await emptyCartList.save()
+
     res.json(eventCartList)
+  } catch(err) {
+    next(createError.InternalServerError(err))
+  }
+}
+
+module.exports.emptyCartList1 = async (req, res, next) => {
+  try {
+    const { user_id } = req.body;
+    let sql = `DELETE FROM cartLists WHERE user_id = "${user_id}"`;
+
+    mysqlConnection.query(sql, (err, rows, fields) => {
+      if (!err) {
+        return res.status(200).json({ rows });
+      }
+      res.send(err);
+    });
   } catch(err) {
     next(createError.InternalServerError(err))
   }

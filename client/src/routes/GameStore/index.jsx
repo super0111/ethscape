@@ -33,7 +33,7 @@ const GameStore = () => {
   }, [init])
 
   useEffect( async ()=> {
-    fetch(BACKEND() + '/api/getProducts', {
+    fetch(BACKEND() + '/api/getProducts1', {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json'
@@ -67,7 +67,7 @@ const GameStore = () => {
               : <LoginForm />
             }
             <FilterForm 
-              productData={productData} 
+              productData={productData}
               setProductData={setProductData} 
               setProductFilterData={setProductFilterData} 
               gemstonesCount={gemstonesCount}

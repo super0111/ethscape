@@ -38,7 +38,7 @@ export const LoginedForm= () => {
       user_id: user.name,
     }
 
-    fetch(BACKEND() + '/api/emptyCartList', {
+    fetch(BACKEND() + '/api/emptyCartList1', {
       method: 'DELETE',
       headers: {
         'Content-Type': 'application/json'

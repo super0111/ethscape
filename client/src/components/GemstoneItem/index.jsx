@@ -44,12 +44,12 @@ export const GemstoneItem = (props) => {
     }
 
     const validatedBody ={
-      item_id: productData._id,
+      item_id: productData.item_id,
       user_id: user.name,
       product_count: productCount,
     }
 
-    fetch(BACKEND() + '/api/addToCart', {
+    fetch(BACKEND() + '/api/addToCart1', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'

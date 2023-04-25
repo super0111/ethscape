@@ -8,7 +8,8 @@ const cors = require('cors');
 const RateLimit = require('express-rate-limit');
 const createError = require('http-errors');
 
-const DB = require('./modules/DB');
+const MongoDB = require('./modules/MongoDB');
+require('./modules/MySQL');
 
 const app = express()
 const httpServer = http.createServer(app)
@@ -57,7 +58,7 @@ app.use((err, req, res, next) => {
 
 const port = process.env.PORT || 8000
 
-DB().then(() => {
+MongoDB().then(() => {
   httpServer.listen({ port }, () => {
     console.log(`Server run on localhost:${port}`)
   })

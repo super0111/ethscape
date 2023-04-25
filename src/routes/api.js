@@ -8,8 +8,11 @@ const ForumController = require('../modules/controllers/forumController');
 const MessagesController = require('../modules/controllers/messagesController');
 
 router.get('/getProducts', GeneralController.getProducts)
+router.get('/getProducts1', GeneralController.getProducts1)
 router.post('/addToCart', GeneralController.addToCart)
+router.post('/addToCart1', GeneralController.addToCart1)
 router.delete('/emptyCartList', GeneralController.emptyCartList)
+router.delete('/emptyCartList1', GeneralController.emptyCartList1)
 
 router.get('/search', GeneralController.search)
 router.get('/stats', GeneralController.getStats)

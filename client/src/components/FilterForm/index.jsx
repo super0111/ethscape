@@ -8,7 +8,7 @@ export const FilterForm = (props) => {
     gemstonesCount, 
     squealCount, 
     seasonalCount, 
-    packsCount 
+    packsCount
   } = props;
 
   return (

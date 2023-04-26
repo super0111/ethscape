@@ -6,7 +6,6 @@ const http = require('http');
 const express = require('express');
 const cors = require('cors');
 const RateLimit = require('express-rate-limit');
-const createError = require('http-errors');
 
 const MongoDB = require('./modules/MongoDB');
 require('./modules/MySQL');

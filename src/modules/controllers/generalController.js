@@ -18,10 +18,7 @@ const Message = require('../models/Message');
 const AuthHistory = require('../models/AuthHistory');
 const Products = require('../models/Products');
 const CartLists = require('../models/CartList');
-
 const mysqlConnection = require('../MySQL');
-
-
 const deleteFiles = require('../utils/deleteFiles');
 const storage = require('../utils/storage');
 
@@ -790,10 +787,9 @@ module.exports.emptyCartList1 = async (req, res, next) => {
 
 module.exports.checkoutPayment = async (req, res, next) => {
   try {
-    const { user_id, user_name, amount } = req.body;
+    const { user_id, user_name, amount, receiver } = req.body;
     const createdAt = new Date().toISOString();
-    console.log("createdAt", createdAt)
-    const sql = `INSERT INTO paymentcheckout (user_id, user_name, amount, createdAt) VALUES ("${user_id}", "${user_name}", "${amount}", "${createdAt}")`;
+    const sql = `INSERT INTO payments (user_id, user_name, amount, receiver, createdAt) VALUES ("${user_id}", "${user_name}", "${amount}", "${receiver}", "${createdAt}")`;
     mysqlConnection.query(sql, (err, rows, fields) => {
       if (!err) {
         return res.status(200).json({ message: 'success' });

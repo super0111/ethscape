@@ -7,6 +7,32 @@
   box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);  
 }
 
+.loginedForm .username {
+  font-size: 12px;
+  font-weight: normal;
+  display: inline-block;
+  max-width: 100%;
+  margin-bottom: 5px;
+}
+
+.loginedForm input {
+  margin-bottom: 15px;
+  width: 100%;
+  height: 39px;
+  padding: 8px 12px;
+  font-size: 15px;
+  line-height: 1.4;
+  color: #6f6f6f;
+  background-color: #222;
+  outline: 0 !important;
+  box-shadow: none !important;
+  border-color: #444 !important;
+  background-image: none;
+  border: 1px solid #cccccc;
+  border-radius: 0;
+  transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s
+}
+
 .loginedForm h4 {
   font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-weight: 300;

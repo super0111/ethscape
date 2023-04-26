@@ -28,6 +28,7 @@ export const LoginedForm= () => {
   const { user, logout, cartLists, setCartLists } = useContext(StoreContext)
   const [ modalIsOpen, setIsOpen ] = useState(false);
   const [ totalPrice, setTotalPrice ] = useState(0);
+  const [ usernameValue, setUsernameValue ] = useState('')
 
   useEffect(()=> {
     let total = 0;
@@ -49,6 +50,14 @@ export const LoginedForm= () => {
       setCartLists(await response.json())
     })
   }, [])
+
+  const checkoutModalHandler = () => {
+    if(usernameValue === "") {
+      alert("please input username")
+      return
+    }
+    setIsOpen(true)
+  }
 
   const emptyCartList = () => {
     if(!user) {
@@ -84,6 +93,7 @@ export const LoginedForm= () => {
       user_id: user.id,
       user_name: user.name,
       amount: totalPrice,
+      receiver: usernameValue,
     }
 
     fetch(BACKEND() + '/api/checkoutPayment', {
@@ -111,7 +121,16 @@ export const LoginedForm= () => {
       <label>YOU HAVE NO PRODUCTS IN YOUR SHOPPING CART.</label>
       <div className="mid-text">Total: ${totalPrice.toFixed(2)}</div>
 
-      <button onClick={()=>setIsOpen(true)}>Checkout with Paypal</button>
+      <label className="username">Enter your in-game username:</label>
+      <input 
+        type="text" 
+        name="username" 
+        id="username" 
+        className="form-control" 
+        placeholder="" 
+        onChange={(e)=>setUsernameValue(e.target.value)}
+      />
+      <button onClick={checkoutModalHandler}>Checkout with Paypal</button>
       <button onClick={logout}>Log out</button>
 
       <div className="mid-text text-center cursor-pointer" onClick={emptyCartList}>Empty cart</div>

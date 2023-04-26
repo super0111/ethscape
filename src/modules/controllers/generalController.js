@@ -698,10 +698,11 @@ module.exports.getProducts1 = async (req, res, next) => {
 
 module.exports.addToCart = async (req, res, next) => {
   try {
-    const { item_id, user_id, product_count } = req.body;
+    const { item_id, item_price, user_id, product_count } = req.body;
     const newCartList = new CartLists({
       item_id,
       user_id,
+      item_price,
       product_count,
       createdAt: new Date().toISOString(),
     })
@@ -715,18 +716,39 @@ module.exports.addToCart = async (req, res, next) => {
 
 module.exports.addToCart1 = async (req, res, next) => {
   try {
-    const { item_id, user_id, product_count } = req.body;
-    const sql = `INSERT INTO cartLists (item_id, user_id, product_count) VALUES 
-    ("${item_id}", "${user_id}", "${product_count}")`;
-    mysqlConnection.query(sql, (err, rows, fields) => {
-      if (!err) {
-        return res.status(200).json({ message: "ok" });
-      }
-      res.send(err);
+    const { item_id, user_id, item_price, product_count } = req.body;
+    const sql = `INSERT INTO cartLists (item_id, item_price, user_id, product_count) VALUES ("${item_id}", "${item_price}", "${user_id}", "${product_count}")`;
+    var query =  mysqlConnection.query(sql);
+    query
+    .on('error', function(err) {
+      // Handle error, an 'end' event will be emitted after this as well
+    })
+    .on('fields', function(fields) {
+      // the field packets for the rows to follow
+    })
+    .on('result', function(row) {
+      // Pausing the connnection is useful if your processing involves I/O
+
+    })
+    .on('end', function() {
+      // all rows have been received
+      mysqlConnection.query("SELECT * from cartlists", (err, rows, fields) => {
+        if (!err) {
+          return res.status(200).json({ data: rows });
+        }
+      });
     });
   } catch(err) {
     next(createError.InternalServerError(err))
   }
+}
+
+module.exports.getCartLists = async (req, res, next) => {
+  mysqlConnection.query("SELECT * from cartlists", (err, rows, fields) => {
+    if (!err) {
+      res.send(rows);
+    }
+  });
 }
 
 module.exports.emptyCartList = async (req, res, next) => {
@@ -760,6 +782,22 @@ module.exports.emptyCartList1 = async (req, res, next) => {
         return res.status(200).json({ rows });
       }
       res.send(err);
+    });
+  } catch(err) {
+    next(createError.InternalServerError(err))
+  }
+}
+
+module.exports.checkoutPayment = async (req, res, next) => {
+  try {
+    const { user_id, user_name, amount } = req.body;
+    const createdAt = new Date().toISOString();
+    console.log("createdAt", createdAt)
+    const sql = `INSERT INTO paymentcheckout (user_id, user_name, amount, createdAt) VALUES ("${user_id}", "${user_name}", "${amount}", "${createdAt}")`;
+    mysqlConnection.query(sql, (err, rows, fields) => {
+      if (!err) {
+        return res.status(200).json({ message: 'success' });
+      }
     });
   } catch(err) {
     next(createError.InternalServerError(err))

@@ -25,8 +25,30 @@ const customStyles = {
 Modal.setAppElement('#root');
 
 export const LoginedForm= () => {
-  const { user, logout } = useContext(StoreContext)
+  const { user, logout, cartLists, setCartLists } = useContext(StoreContext)
   const [ modalIsOpen, setIsOpen ] = useState(false);
+  const [ totalPrice, setTotalPrice ] = useState(0);
+
+  useEffect(()=> {
+    let total = 0;
+    cartLists && cartLists.map((item) => {
+      total = total + item.item_price * item.product_count;
+      setTotalPrice(total)
+    });
+  }, [cartLists])
+
+  useEffect(()=> {
+    fetch(BACKEND() + '/api/getCartLists', {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+    })
+    .then( async response => {
+      // console.log("res", await response.json())
+      setCartLists(await response.json())
+    })
+  }, [])
 
   const emptyCartList = () => {
     if(!user) {
@@ -46,7 +68,40 @@ export const LoginedForm= () => {
       body: JSON.stringify(validatedBody)
     })
     .then( async response => {
-      console.log("response", await response.json())
+      if(response.status === 200) {
+        setTotalPrice(0)
+      }
+    })
+  }
+
+  const checkout = () => {
+    if(totalPrice === 0) {
+      alert("Please add to cart")
+      return
+    }
+
+    const validatedBody = {
+      user_id: user.id,
+      user_name: user.name,
+      amount: totalPrice,
+    }
+
+    fetch(BACKEND() + '/api/checkoutPayment', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(validatedBody)
+    })
+    .then( async response => {
+      if(response.status === 200) {
+        emptyCartList()
+        setTotalPrice(0)
+        setIsOpen(false)
+      } else {
+        alert("There was some error") 
+        return
+      }
     })
   }
 
@@ -54,7 +109,7 @@ export const LoginedForm= () => {
     <div className="loginedForm">
       <h4>Logged in as</h4>
       <label>YOU HAVE NO PRODUCTS IN YOUR SHOPPING CART.</label>
-      <div className="mid-text">Total: $0.00</div>
+      <div className="mid-text">Total: ${totalPrice.toFixed(2)}</div>
 
       <button onClick={()=>setIsOpen(true)}>Checkout with Paypal</button>
       <button onClick={logout}>Log out</button>
@@ -74,7 +129,9 @@ export const LoginedForm= () => {
         <div className='modal-text text-center'>
           Once the transaction is done, you can relog to receive your items in-game.
         </div>
-        <div className='modal-accept' 
+        <button 
+          onClick={checkout}
+          className='modal-accept'
           style={{
             width: '100%',
             height: '30px',
@@ -87,7 +144,7 @@ export const LoginedForm= () => {
             fontFamily: 'inherit',
             textAlign: 'center',
           }}
-        >Accept</div>
+        >Accept</button>
         <div className='close-modal' onClick={()=>setIsOpen(false)}>✖</div>
       </Modal>
     </div>

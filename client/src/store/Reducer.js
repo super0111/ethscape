@@ -5,6 +5,11 @@ const Reducer = (state, action) => {
         ...state,
         lang: action.payload
       }
+    case 'SET_CartLists':
+      return {
+        ...state,
+        cartLists: action.payload
+      }
     case 'SET_TOKEN':
       return {
         ...state,

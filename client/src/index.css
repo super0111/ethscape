@@ -12,6 +12,12 @@
   src: local('Chat-Bold-07'), url(./fonts/RuneScape-Quill.ttf) format('truetype')
 }
 
+@font-face {
+  font-family: "RuneScape Large";   /*Can be any text*/
+  src: local("RuneScape Large"),
+    url("./assets/fonts/runescape_large.ttf") format("truetype");
+}
+
 :root {
   --font-ss: "Chat-Bold-07", Sans-serif;
   --border-radius: 4px;

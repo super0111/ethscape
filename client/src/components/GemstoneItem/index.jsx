@@ -1,7 +1,7 @@
 
 import { useEffect, useState, useContext } from 'react';
 import Modal from 'react-modal';
-import { BACKEND, Strings } from 'support/Constants';
+import { BACKEND } from 'support/Constants';
 import { StoreContext } from 'store/Store';
 
 import './style.css';
@@ -26,7 +26,7 @@ Modal.setAppElement('#root');
 
 export const GemstoneItem = (props) => {
   const { productData } = props;
-  const { user } = useContext(StoreContext)
+  const { user, setCartLists } = useContext(StoreContext)
   const [ modal_data, setModal_data ] = useState()
   const [ modalIsOpen, setIsOpen ] = useState(false);
   const [ productCount, setProductCount ] = useState(1);
@@ -46,6 +46,7 @@ export const GemstoneItem = (props) => {
     const validatedBody ={
       item_id: productData.item_id,
       user_id: user.name,
+      item_price: productData.item_price,
       product_count: productCount,
     }
 
@@ -56,8 +57,9 @@ export const GemstoneItem = (props) => {
       },
       body: JSON.stringify(validatedBody)
     })
-    .then(response => {
-      console.log("response", response)
+    .then( async response => {
+      const resData = await response.json();
+      setCartLists(resData.data)
     })
   }
 

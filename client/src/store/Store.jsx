@@ -7,6 +7,7 @@ import Reducer from './Reducer';
 
 let user = null
 let token = null
+let cartLists = null
 if (localStorage.getItem('token')) {
   const decodedToken = jwtDecode(localStorage.getItem('token'))
   if (decodedToken.exp * 1000 < Date.now()) {
@@ -32,6 +33,7 @@ const initialState = {
   fab: true,
   walletConnect: true,
   lang,
+  cartLists,
   forumMenuActive: false,
 }
 
@@ -46,6 +48,13 @@ const Store = ({ children }) => {
     document.querySelector('html').lang = payload
     dispatch({
       type: 'SET_LANG',
+      payload
+    })
+  }
+
+  const setCartLists = (payload) => {
+    dispatch({
+      type: 'SET_CartLists',
       payload
     })
   }
@@ -115,6 +124,8 @@ const Store = ({ children }) => {
   const store = {
     lang: state.lang,
     setLang,
+    cartLists: state.cartLists,
+    setCartLists,
     token: state.token,
     user: state.user,
     setUserPicture,

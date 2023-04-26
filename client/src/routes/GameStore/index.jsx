@@ -2,8 +2,8 @@ import { useContext, useEffect, useState } from 'react';
 
 import { StoreContext } from 'store/Store';
 
-import { Section, SectionHeader } from 'components/Section';
-import { BACKEND, Strings } from 'support/Constants';
+import { Section } from 'components/Section';
+import { BACKEND } from 'support/Constants';
 // import Breadcrumbs from 'components/Breadcrumbs';
 import { LoginForm } from 'components/LoginForm';
 import { LoginedForm } from 'components/LoginedForm';
@@ -14,7 +14,7 @@ import './style.css';
 
 const GameStore = () => {
   document.title = 'EthScape'
-  const { user, setFabVisible, setWalletConnectVisible, setForumMenuActive } = useContext(StoreContext)
+  const { user, setFabVisible, setWalletConnectVisible, setForumMenuActive, cartLists } = useContext(StoreContext)
   const [ init, setInit ] = useState(true)
   const [ productData, setProductData ] = useState([])
   const [ productFilterData, setProductFilterData ] = useState([])
